@@ -1,5 +1,6 @@
 const canvasSketch = require("canvas-sketch");
 const { lerp } = require("canvas-sketch-util/math");
+const random = require("canvas-sketch-util/random");
 
 const settings = {
   dimensions: "A4",
@@ -17,8 +18,9 @@ const sketch = () => {
         ])
       )
       .flat();
-  const points = createGrid(5);
-  const margin = 100;
+  random.setSeed(512);
+  const points = createGrid(100).filter(() => random.value() > 0.6);
+  const margin = 300;
   console.log(points);
   return ({ context, width, height }) => {
     context.fillStyle = "wheat";
@@ -26,8 +28,8 @@ const sketch = () => {
       const x = lerp(margin, width - margin, u);
       const y = lerp(margin, height - margin, v);
       context.beginPath();
-      context.arc(x, y, 200, 0, Math.PI * 2, false);
-      context.lineWidth = 50;
+      context.arc(x, y, 10, 0, Math.PI * 2, false);
+      context.lineWidth = 10;
       context.stroke();
     });
   };
