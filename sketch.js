@@ -1,7 +1,9 @@
 const canvasSketch = require("canvas-sketch");
 
 const settings = {
-  dimensions: [2048, 2048]
+  dimensions: "A4",
+  orientation: 'landscape',
+  pixelsPerInch: 300 // for print, 72 for display on digital screens
 };
 
 const sketch = () => {
@@ -9,10 +11,10 @@ const sketch = () => {
     context.fillStyle = "wheat";
     context.fillRect(0, 0, width, height);
     context.fillStyle = "orange";
-    context.arc(width / 2, height / 2, 500, 0, Math.PI * 2, false);
+    context.arc(width / 2, height / 2, width * 0.2, 0, Math.PI * 2, false);
     context.fill();
-    context.lineWidth = 20;
-    context.strokeStyle = "lightblue"
+    context.lineWidth = width * 0.05;
+    context.strokeStyle = "lightblue";
     context.stroke();
   };
 };
